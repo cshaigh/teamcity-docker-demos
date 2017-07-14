@@ -6,6 +6,7 @@ services:
         volumes:
             - teamcity-server-datadir:/data/teamcity_server/datadir
             - teamcity-server-logs:/opt/teamcity/logs
+            - /var/run/docker.sock:/var/run/docker.sock
         ports:
             - 8111:8111
     teamcity-agent:
