@@ -4,6 +4,7 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-co
     && chmod +x /usr/local/bin/docker-compose
 
 # update to edge release of docker cli - 17.06.1 fixes docker build --pull issue
+# ugh not fixed in 17.06.1-ce-rc1 :(
 RUN sed -i 's/stable/test/' /etc/apt/sources.list.d/docker.list \
     && apt-get update \
     && apt-get upgrade -y docker-ce \
