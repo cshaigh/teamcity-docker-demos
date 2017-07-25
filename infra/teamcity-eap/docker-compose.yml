@@ -16,8 +16,22 @@ services:
             SERVER_URL: http://teamcity:8111
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-
+    internal-registry:
+        image: registry:2.6.2
+        volumes:
+            - internal-registry:/var/lib/registry
+        ports:
+            - "5000:5000"
+        environment:
+            REGISTRY_STORAGE_DELETE_ENABLED: "true"
+    registry-web:
+        image: hyper/docker-registry-web
+        ports:
+            - "5001:8080"
+        volumes:
+            - ./registry-web.config.yml:/conf/config.yml:ro
 
 volumes:
     teamcity-server-datadir:
     teamcity-server-logs:
+    internal-registry:
